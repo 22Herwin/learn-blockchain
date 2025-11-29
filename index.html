@@ -16,7 +16,7 @@
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center h-16">
           <!-- Logo/Brand -->
-          <div class="flex items-center space-x-2">
+          <div class="flex items-center space-x-2 select-none">
             <i class="fas fa-cube text-blue-400 text-2xl"></i>
             <span class="text-white font-bold text-xl hidden sm:inline">Blockchain Simulator</span>
           </div>
@@ -24,22 +24,22 @@
           <!-- Navigation Menu -->
           <div class="flex items-center space-x-2 sm:space-x-4">
             <!-- Home Button -->
-            <button id="tab-home"
-              class="nav-btn px-3 sm:px-4 py-2 rounded-md text-white font-medium hover:bg-gray-700 transition-colors duration-200 active">
+            <button id="tab-home" onclick="showPage('page-home')"
+              class="nav-btn px-3 sm:px-4 py-2 rounded-md text-white font-medium hover:bg-gray-700 transition-colors duration-200 active cursor-pointer">
               <i class="fas fa-home mr-1 sm:mr-2"></i><span class="hidden sm:inline">Home</span>
             </button>
 
             <!-- Simulations Dropdown -->
             <div class="relative group">
               <button id="dropdown-btn"
-                class="nav-btn px-3 sm:px-4 py-2 rounded-md text-white font-medium hover:bg-gray-700 transition-colors duration-200 flex items-center">
+                class="nav-btn px-3 sm:px-4 py-2 rounded-md text-white font-medium hover:bg-gray-700 transition-colors duration-200 flex items-center cursor-pointer">
                 <i class="fas fa-flask mr-1 sm:mr-2"></i>
                 <span class="hidden sm:inline">Simulations</span>
                 <i class="fas fa-chevron-down ml-1 text-xs"></i>
               </button>
 
               <!-- Dropdown Menu -->
-              <div id="dropdown-menu" class="dropdown-menu">
+              <div id="dropdown-menu" class="dropdown-menu cursor-pointer">
                 <a href="#" onclick="showPage('page-hash')" class="flex items-center">
                   <i class="fas fa-hashtag mr-2"></i>Hash Generator
                 </a>
@@ -59,8 +59,8 @@
             </div>
 
             <!-- About Button -->
-            <button id="tab-about"
-              class="nav-btn px-3 sm:px-4 py-2 rounded-md text-white font-medium hover:bg-gray-700 transition-colors duration-200">
+            <button id="tab-about" onclick="showPage('page-about')"
+              class="nav-btn px-3 sm:px-4 py-2 rounded-md text-white font-medium hover:bg-gray-700 transition-colors duration-200 cursor-pointer">
               <i class="fas fa-user mr-1 sm:mr-2"></i><span class="hidden sm:inline">About</span>
             </button>
           </div>
@@ -82,12 +82,12 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
               <button onclick="showPage('page-hash')"
-                class="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors duration-200">
+                class="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors duration-200 cursor-pointer">
                 Start Learning
               </button>
               <button onclick="showPage('page-about')"
-                class="bg-blue-700 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-800 transition-colors duration-200">
-                Learn About Us
+                class="bg-blue-700 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
+                Learn About Me
               </button>
             </div>
           </div>
@@ -99,7 +99,8 @@
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             <!-- Feature 1: Hash -->
-            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+            <div
+              class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
               <div class="text-4xl text-blue-500 mb-4">
                 <i class="fas fa-hashtag"></i>
               </div>
@@ -110,7 +111,8 @@
             </div>
 
             <!-- Feature 2: Block Mining -->
-            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+            <div
+              class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
               <div class="text-4xl text-yellow-500 mb-4">
                 <i class="fas fa-cubes"></i>
               </div>
@@ -121,7 +123,8 @@
             </div>
 
             <!-- Feature 3: Blockchain -->
-            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+            <div
+              class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
               <div class="text-4xl text-green-500 mb-4">
                 <i class="fas fa-link"></i>
               </div>
@@ -132,7 +135,8 @@
             </div>
 
             <!-- Feature 4: Digital Signatures -->
-            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+            <div
+              class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
               <div class="text-4xl text-purple-500 mb-4">
                 <i class="fas fa-lock"></i>
               </div>
@@ -143,7 +147,8 @@
             </div>
 
             <!-- Feature 5: Consensus -->
-            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+            <div
+              class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
               <div class="text-4xl text-orange-500 mb-4">
                 <i class="fas fa-handshake"></i>
               </div>
@@ -154,7 +159,8 @@
             </div>
 
             <!-- Feature 6: Interactive -->
-            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+            <div
+              class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
               <div class="text-4xl text-red-500 mb-4">
                 <i class="fas fa-flask-vial"></i>
               </div>
@@ -167,20 +173,6 @@
           </div>
         </div>
 
-        <!-- Call to Action Section -->
-        <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-16 px-4">
-          <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-4">Ready to Explore Blockchain?</h2>
-            <p class="text-lg mb-8 text-blue-100">
-              Start with the basics and work your way up to understanding advanced blockchain concepts.
-            </p>
-            <button onclick="showPage('page-hash')"
-              class="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors duration-200">
-              Begin Now
-            </button>
-          </div>
-        </div>
-
         <!-- Date/Time Display -->
         <div class="max-w-6xl mx-auto px-4 py-8">
           <div class="text-center text-gray-600">
@@ -190,7 +182,7 @@
       </div>
 
       <!-- Page: Hash -->
-      <div id="page-hash" class="page">
+      <div id="page-hash" class="page active">
         <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg m-6">
           <h2 class="text-3xl font-bold mb-6 text-gray-800">
             <i class="fas fa-hashtag text-blue-500 mr-2"></i>Hash Generator
@@ -215,6 +207,25 @@
                 Hash will appear here...
               </div>
             </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="mt-8 pt-8 border-t-2 border-gray-200 flex items-center justify-between">
+            <button id="btn-prev-block" onclick="navigatePrevious()"
+              class="flex items-center gap-2 px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-bold rounded-lg transition-colors duration-200 cursor-pointer">
+              <i class="fas fa-chevron-left"></i>
+              Previous
+            </button>
+
+            <div class="text-center">
+              <span class="text-sm font-semibold text-gray-600">Page 1 of 5</span>
+            </div>
+
+            <button id="btn-next-hash" onclick="navigateNext()"
+              class="flex items-center gap-2 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition-colors duration-200 cursor-pointer">
+              Next
+              <i class="fas fa-chevron-right"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -286,6 +297,25 @@
               <div id="mining-status" class="text-sm text-gray-600 font-mono"></div>
             </div>
           </div>
+
+          <!-- Navigation Buttons -->
+          <div class="mt-8 pt-8 border-t-2 border-gray-200 flex items-center justify-between">
+            <button id="btn-prev-block" onclick="navigatePrevious()"
+              class="flex items-center gap-2 px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-bold rounded-lg transition-colors duration-200 cursor-pointer">
+              <i class="fas fa-chevron-left"></i>
+              Previous
+            </button>
+
+            <div class="text-center">
+              <span class="text-sm font-semibold text-gray-600">Page 2 of 5</span>
+            </div>
+
+            <button id="btn-next-block" onclick="navigateNext()"
+              class="flex items-center gap-2 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition-colors duration-200 cursor-pointer">
+              Next
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -302,10 +332,29 @@
 
           <div id="blockchain" class="space-y-4 mb-6 overflow-x-auto"></div>
 
-          <div class="flex justify-center">
+          <div class="flex justify-center mb-8">
             <button id="btn-add-block"
               class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center">
               <i class="fas fa-plus mr-2"></i>Add Block
+            </button>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="pt-8 border-t-2 border-gray-200 flex items-center justify-between">
+            <button id="btn-prev-chain" onclick="navigatePrevious()"
+              class="flex items-center gap-2 px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-bold rounded-lg transition-colors duration-200 cursor-pointer">
+              <i class="fas fa-chevron-left"></i>
+              Previous
+            </button>
+
+            <div class="text-center">
+              <span class="text-sm font-semibold text-gray-600">Page 3 of 5</span>
+            </div>
+
+            <button id="btn-next-chain" onclick="navigateNext()"
+              class="flex items-center gap-2 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition-colors duration-200 cursor-pointer">
+              Next
+              <i class="fas fa-chevron-right"></i>
             </button>
           </div>
         </div>
@@ -349,7 +398,7 @@
               <label class="block text-sm font-semibold text-gray-700 mb-2">Message to Sign:</label>
               <textarea id="ecc-message" rows="3"
                 class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 resize-none"
-                placeholder="Enter message to sign..."></textarea>
+                placeholder="Enter message to sign... "></textarea>
             </div>
 
             <button id="btn-sign"
@@ -367,10 +416,29 @@
           <hr class="my-8" />
 
           <button id="btn-verify"
-            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center mb-4">
+            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center mb-8">
             <i class="fas fa-check-circle mr-2"></i>Verify Signature
           </button>
-          <div id="ecc-verify-result" class="text-lg font-semibold"></div>
+          <div id="ecc-verify-result" class="text-lg font-semibold mb-8"></div>
+
+          <!-- Navigation Buttons -->
+          <div class="pt-8 border-t-2 border-gray-200 flex items-center justify-between">
+            <button id="btn-prev-ecc" onclick="navigatePrevious()"
+              class="flex items-center gap-2 px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-bold rounded-lg transition-colors duration-200 cursor-pointer">
+              <i class="fas fa-chevron-left"></i>
+              Previous
+            </button>
+
+            <div class="text-center">
+              <span class="text-sm font-semibold text-gray-600">Page 4 of 5</span>
+            </div>
+
+            <button id="btn-next-ecc" onclick="navigateNext()"
+              class="flex items-center gap-2 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition-colors duration-200 cursor-pointer">
+              Next
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -472,7 +540,7 @@
           <!-- Mempool -->
           <div class="mb-6">
             <label class="block text-sm font-semibold text-gray-700 mb-2">Mempool (Pending Transactions):</label>
-            <textarea id="mempool" rows="3" placeholder="Each transaction on a new line.  Example: A -> B : 10"
+            <textarea id="mempool" rows="3" placeholder="Each transaction on a new line.   Example: A -> B : 10"
               class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 resize-none font-mono text-sm"></textarea>
           </div>
 
@@ -493,7 +561,7 @@
           </div>
 
           <!-- Blockchains -->
-          <div>
+          <div class="mb-8">
             <h3 class="text-2xl font-bold text-gray-800 mb-6">User Databases</h3>
 
             <div class="mb-6">
@@ -510,6 +578,25 @@
               <h4 class="text-lg font-semibold text-gray-700 mb-3">Database User C</h4>
               <div id="chain-C" class="flex gap-3 overflow-x-auto pb-4"></div>
             </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="pt-8 border-t-2 border-gray-200 flex items-center justify-between">
+            <button id="btn-prev-consensus" onclick="navigatePrevious()"
+              class="flex items-center gap-2 px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-bold rounded-lg transition-colors duration-200 cursor-pointer">
+              <i class="fas fa-chevron-left"></i>
+              Previous
+            </button>
+
+            <div class="text-center">
+              <span class="text-sm font-semibold text-gray-600">Page 5 of 5</span>
+            </div>
+
+            <button id="btn-next-consensus" onclick="navigateNext()"
+              class="flex items-center gap-2 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition-colors duration-200 cursor-pointer">
+              Next
+              <i class="fas fa-chevron-right"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -528,13 +615,12 @@
             <div class="md:col-span-1 text-center">
               <div class="mb-6 flex justify-center">
                 <div class="relative w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg">
-                  <img src="https://via.placeholder.com/400/3B82F6/FFFFFF?text=Your+Photo" alt="Profile"
-                    class="w-full h-full object-cover" />
+                  <img src="img/me.JPG" alt="Herwin Dermawan" class="w-full h-full object-cover" />
                 </div>
               </div>
 
-              <h3 class="text-2xl font-bold text-gray-800 mb-2">Herwin</h3>
-              <p class="text-blue-600 font-semibold mb-6">Blockchain Developer & Educator</p>
+              <h3 class="text-2xl font-bold text-gray-800 mb-2">Herwin Dermawan</h3>
+              <p class="text-blue-600 font-semibold mb-6">Web & Unity Developer</p>
 
               <!-- Social Media Links -->
               <div class="mb-6">
@@ -545,17 +631,17 @@
                     title="GitHub">
                     <i class="fab fa-github text-lg"></i>
                   </a>
-                  <a href="https://linkedin.com" target="_blank"
+                  <a href="https://www.linkedin.com/in/herwin-dermawan-579894368/" target="_blank"
                     class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
                     title="LinkedIn">
                     <i class="fab fa-linkedin text-lg"></i>
                   </a>
-                  <a href="https://twitter.com" target="_blank"
-                    class="w-12 h-12 bg-sky-500 text-white rounded-full flex items-center justify-center hover:bg-sky-600 transition-colors duration-200"
-                    title="Twitter">
-                    <i class="fab fa-twitter text-lg"></i>
+                  <a href="https://www.instagram.com/hrwn._.me" target="_blank"
+                    class="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-600 text-white shadow-md hover:opacity-90 transition-colors duration-200"
+                    title="Instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram text-lg"></i>
                   </a>
-                  <a href="mailto:your@email.com"
+                  <a href="mailto:herwindermawan9@gmail.com"
                     class="w-12 h-12 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-200"
                     title="Email">
                     <i class="fas fa-envelope text-lg"></i>
@@ -568,11 +654,11 @@
                 <h4 class="text-sm font-bold text-gray-700 mb-3 uppercase tracking-wider">Contact</h4>
                 <p class="text-gray-600 mb-2">
                   <i class="fas fa-envelope text-blue-500 mr-2"></i>
-                  your. email@example.com
+                  herwindermawan9@gmail.com
                 </p>
                 <p class="text-gray-600">
                   <i class="fas fa-phone text-blue-500 mr-2"></i>
-                  +62 812 3456 7890
+                  +62 895 4011 46496
                 </p>
               </div>
             </div>
@@ -582,23 +668,22 @@
               <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-8">
                 <h3 class="text-2xl font-bold text-gray-800 mb-4">About Me</h3>
                 <p class="text-gray-700 leading-relaxed mb-4">
-                  I'm a passionate blockchain developer and educator focused on making complex blockchain concepts
-                  accessible to everyone.
-                  With expertise in cryptography, distributed systems, and smart contracts, I create interactive
-                  educational tools to help
-                  people understand how blockchain technology works.
+                  I'm a passionate developer with a deep love for both web development and Unity. I enjoy building
+                  digital experiences that blend creativity and technology, from immersive VR environments to efficient
+                  and modern web applications. With hands-on experience using tools like Tailwind CSS, TypeScript,
+                  React, Next.js, and Node.js, I strive to create interfaces and systems that are clean, intuitive, and
+                  powerful.
                 </p>
                 <p class="text-gray-700 leading-relaxed mb-4">
-                  This Blockchain Simulator is designed to provide hands-on experience with key blockchain concepts
-                  including hashing,
-                  proof-of-work mining, digital signatures, and consensus mechanisms. Each simulation is carefully
-                  crafted to help you
-                  build intuition about how these technologies work together to create a secure, decentralized network.
+                  In Unity, I&apos;ve brought ideas to life through VR, including a digital twins project and a virtual
+                  gallery exhibition built with A-Frame. These projects have strengthened my skills in interactive
+                  design, 3D environments, and real-time simulation. I&apos;m always excited to explore how virtual
+                  experiences can solve real-world problems and improve the way people interact with information.
                 </p>
                 <p class="text-gray-700 leading-relaxed">
-                  Whether you're a beginner curious about blockchain or a developer looking to deepen your
-                  understanding, I hope these
-                  simulations help you on your journey to mastering blockchain technology.
+                  I also work with Python on AI-driven applications, including a hospital-focused project that analyzes
+                  medical data to assist with early diagnosis and patient insights. Combining AI with immersive
+                  technology and modern web tools allows me to create solutions that are both innovative and meaningful.
                 </p>
               </div>
 
@@ -607,22 +692,22 @@
                 <h3 class="text-xl font-bold text-gray-800 mb-4">Skills & Expertise</h3>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                   <div class="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-semibold text-sm text-center">
-                    Blockchain Development
+                    Tailwind CSS
                   </div>
                   <div class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg font-semibold text-sm text-center">
-                    Cryptography
+                    JavaScript ES6
                   </div>
                   <div class="bg-green-100 text-green-700 px-4 py-2 rounded-lg font-semibold text-sm text-center">
-                    JavaScript/Web Dev
+                    Java
                   </div>
                   <div class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-lg font-semibold text-sm text-center">
-                    Smart Contracts
+                    C
                   </div>
                   <div class="bg-red-100 text-red-700 px-4 py-2 rounded-lg font-semibold text-sm text-center">
-                    Education
+                    Unity C#
                   </div>
                   <div class="bg-pink-100 text-pink-700 px-4 py-2 rounded-lg font-semibold text-sm text-center">
-                    Teaching
+                    Python
                   </div>
                 </div>
               </div>
@@ -637,14 +722,14 @@
             <div class="bg-gray-100 rounded-lg overflow-hidden shadow-lg">
               <div class="w-full h-96 rounded-lg overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.821697847364!2d107.60915342346957!3d-6.9271793931815135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3! 1m2!1s0x2e68e6b313d16d01%3A0x2e68e6b313d16d01! 2sBandung%2C%20West%20Java%2C%20Indonesia!5e0!3m2!1sen!2sid!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.692178167003!2d112.79117721046906!3d-7.275824292701009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fa10ea2ae883%3A0xbe22c55d60ef09c7!2sPoliteknik%20Elektronika%20Negeri%20Surabaya!5e0!3m2!1sid!2sid!4v1764406098760!5m2!1sid!2sid"
                   width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade" class="w-full h-full"></iframe>
               </div>
             </div>
             <p class="text-gray-600 mt-4 text-center">
               <i class="fas fa-map-pin text-red-500 mr-2"></i>
-              Currently based in Bandung, West Java, Indonesia
+              Currently based in Surabaya, East Java, Indonesia
             </p>
           </div>
 
@@ -681,56 +766,13 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/elliptic/6.5.4/elliptic.min.js"></script>
     <script src="app4.js"></script>
-    <script>
-      // Dropdown functionality
-      const dropdownBtn = document.getElementById('dropdown-btn');
-      const dropdownMenu = document.getElementById('dropdown-menu');
-
-      dropdownBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        dropdownMenu.classList.toggle('show');
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
-          dropdownMenu.classList.remove('show');
-        }
-      });
-
-      // Close dropdown when a link is clicked
-      dropdownMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          dropdownMenu.classList.remove('show');
-        });
-      });
-
-      // Update navigation button active states
-      const originalShowPage = window.showPage;
-      window.showPage = function (pageId) {
-        originalShowPage(pageId);
-
-        // Update active button in navbar
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-          btn.classList.remove('active', 'bg-gray-700');
-        });
-
-        const pageType = pageId.split('-')[1];
-        const tabBtn = document.getElementById(`tab-${pageType}`);
-        if (tabBtn) {
-          tabBtn.classList.add('active', 'bg-gray-700');
-        }
-      };
-    </script>
   </body>
 
 </html>

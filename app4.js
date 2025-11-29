@@ -421,3 +421,88 @@ function renderConsensusChains() {
 		});
 	});
 }
+
+// ================== NAVBAR FUNCTIONALITY ==================
+// Dropdown functionality
+const dropdownBtn = document.getElementById('dropdown-btn');
+const dropdownMenu = document.getElementById('dropdown-menu');
+
+dropdownBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	dropdownMenu.classList.toggle('show');
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+	if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+		dropdownMenu.classList.remove('show');
+	}
+});
+
+// Close dropdown when a link is clicked
+dropdownMenu.querySelectorAll('a').forEach((link) => {
+	link.addEventListener('click', () => {
+		dropdownMenu.classList.remove('show');
+	});
+});
+
+// Update navigation button active states
+const originalShowPage = window.showPage;
+window.showPage = function (pageId) {
+	originalShowPage(pageId);
+
+	// Update active button in navbar
+	document.querySelectorAll('.nav-btn').forEach((btn) => {
+		btn.classList.remove('active', 'bg-gray-700');
+	});
+
+	const pageType = pageId.split('-')[1];
+	const tabBtn = document.getElementById(`tab-${pageType}`);
+	if (tabBtn) {
+		tabBtn.classList.add('active', 'bg-gray-700');
+	}
+};
+
+// ================== PAGE NAVIGATION ==================
+
+// Define page order (excluding Home and About)
+const pageOrder = [
+	'page-hash',
+	'page-block',
+	'page-chain',
+	'page-ecc',
+	'page-consensus',
+];
+
+// Get current active page
+function getCurrentPageIndex() {
+	for (let i = 0; i < pageOrder.length; i++) {
+		const page = document.getElementById(pageOrder[i]);
+		if (page && page.classList.contains('active')) {
+			return i;
+		}
+	}
+	return 0;
+}
+
+// Navigate to next page (with circular navigation)
+function navigateNext() {
+	const currentIndex = getCurrentPageIndex();
+	// If at the last page, go back to first page.  Otherwise, go to next page.
+	const nextIndex = (currentIndex + 1) % pageOrder.length;
+	showPage(pageOrder[nextIndex]);
+	window.scrollTo(0, 0);
+}
+
+// Navigate to previous page (with circular navigation)
+function navigatePrevious() {
+	const currentIndex = getCurrentPageIndex();
+	// If at the first page, go to last page. Otherwise, go to previous page.
+	const prevIndex = (currentIndex - 1 + pageOrder.length) % pageOrder.length;
+	showPage(pageOrder[prevIndex]);
+	window.scrollTo(0, 0);
+}
+
+// Make navigation functions globally available
+window.navigateNext = navigateNext;
+window.navigatePrevious = navigatePrevious;
