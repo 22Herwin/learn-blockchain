@@ -1,3 +1,15 @@
+// Ensure exactly one .page is active on initial load
+document.addEventListener('DOMContentLoaded', () => {
+	const pages = Array.from(document.querySelectorAll('.page'));
+	const actives = pages.filter((p) => p.classList.contains('active'));
+	if (actives.length !== 1) {
+		pages.forEach((p) => p.classList.remove('active'));
+		const home = document.getElementById('page-home');
+		if (home) home.classList.add('active');
+		else if (pages[0]) pages[0].classList.add('active');
+	}
+});
+
 // ================== DATE & TIME ==================
 function updateDateTime() {
 	const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
