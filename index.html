@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blockchain Simulator - Learn Blockchain Technology</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </head>
+
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-gradient-to-r from-gray-900 to-gray-800 shadow-lg sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo/Brand -->
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-cube text-blue-400 text-2xl"></i>
+            <span class="text-white font-bold text-xl hidden sm:inline">Blockchain Simulator</span>
+          </div>
+
+          <!-- Navigation Menu -->
+          <div class="flex items-center space-x-2 sm:space-x-4">
+            <!-- Home Button -->
+            <button id="tab-home"
+              class="nav-btn px-3 sm:px-4 py-2 rounded-md text-white font-medium hover:bg-gray-700 transition-colors duration-200 active">
+              <i class="fas fa-home mr-1 sm:mr-2"></i><span class="hidden sm:inline">Home</span>
+            </button>
+
+            <!-- Simulations Dropdown -->
+            <div class="relative group">
+              <button id="dropdown-btn"
+                class="nav-btn px-3 sm:px-4 py-2 rounded-md text-white font-medium hover:bg-gray-700 transition-colors duration-200 flex items-center">
+                <i class="fas fa-flask mr-1 sm:mr-2"></i>
+                <span class="hidden sm:inline">Simulations</span>
+                <i class="fas fa-chevron-down ml-1 text-xs"></i>
+              </button>
+
+              <!-- Dropdown Menu -->
+              <div id="dropdown-menu" class="dropdown-menu">
+                <a href="#" onclick="showPage('page-hash')" class="flex items-center">
+                  <i class="fas fa-hashtag mr-2"></i>Hash Generator
+                </a>
+                <a href="#" onclick="showPage('page-block')" class="flex items-center">
+                  <i class="fas fa-cube mr-2"></i>Single Block
+                </a>
+                <a href="#" onclick="showPage('page-chain')" class="flex items-center">
+                  <i class="fas fa-link mr-2"></i>Blockchain
+                </a>
+                <a href="#" onclick="showPage('page-ecc')" class="flex items-center">
+                  <i class="fas fa-lock mr-2"></i>ECC Signature
+                </a>
+                <a href="#" onclick="showPage('page-consensus')" class="flex items-center">
+                  <i class="fas fa-handshake mr-2"></i>Consensus
+                </a>
+              </div>
+            </div>
+
+            <!-- About Button -->
+            <button id="tab-about"
+              class="nav-btn px-3 sm:px-4 py-2 rounded-md text-white font-medium hover:bg-gray-700 transition-colors duration-200">
+              <i class="fas fa-user mr-1 sm:mr-2"></i><span class="hidden sm:inline">About</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="min-h-screen">
+
+      <!-- Page: Home -->
+      <div id="page-home" class="page active">
+        <!-- Hero Section -->
+        <div class="bg-gradient-to-b from-blue-600 to-blue-400 text-white py-20 px-4">
+          <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-5xl sm:text-6xl font-bold mb-6">Welcome to Blockchain Simulator</h1>
+            <p class="text-xl sm:text-2xl mb-8 text-blue-100">
+              Learn blockchain technology through interactive simulations and hands-on experiments
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <button onclick="showPage('page-hash')"
+                class="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors duration-200">
+                Start Learning
+              </button>
+              <button onclick="showPage('page-about')"
+                class="bg-blue-700 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-800 transition-colors duration-200">
+                Learn About Us
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="max-w-6xl mx-auto px-4 py-16">
+          <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">What You Can Learn</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Feature 1: Hash -->
+            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+              <div class="text-4xl text-blue-500 mb-4">
+                <i class="fas fa-hashtag"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-800">Hash Functions</h3>
+              <p class="text-gray-600">
+                Understand how SHA-256 hashing works and see how it forms the foundation of blockchain security.
+              </p>
+            </div>
+
+            <!-- Feature 2: Block Mining -->
+            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+              <div class="text-4xl text-yellow-500 mb-4">
+                <i class="fas fa-cubes"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-800">Block Mining</h3>
+              <p class="text-gray-600">
+                Learn how miners solve complex mathematical problems to create new blocks and secure the network.
+              </p>
+            </div>
+
+            <!-- Feature 3: Blockchain -->
+            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+              <div class="text-4xl text-green-500 mb-4">
+                <i class="fas fa-link"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-800">Blockchain Structure</h3>
+              <p class="text-gray-600">
+                Explore how blocks are linked together to create an immutable chain of records.
+              </p>
+            </div>
+
+            <!-- Feature 4: Digital Signatures -->
+            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+              <div class="text-4xl text-purple-500 mb-4">
+                <i class="fas fa-lock"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-800">ECC Signatures</h3>
+              <p class="text-gray-600">
+                Master Elliptic Curve Cryptography and understand digital signatures used in transactions.
+              </p>
+            </div>
+
+            <!-- Feature 5: Consensus -->
+            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+              <div class="text-4xl text-orange-500 mb-4">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-800">Consensus Mechanisms</h3>
+              <p class="text-gray-600">
+                Understand how distributed networks agree on the state of the blockchain.
+              </p>
+            </div>
+
+            <!-- Feature 6: Interactive -->
+            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+              <div class="text-4xl text-red-500 mb-4">
+                <i class="fas fa-flask-vial"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-800">Interactive Simulations</h3>
+              <p class="text-gray-600">
+                Experiment with each concept and see how changes affect the blockchain in real-time.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Call to Action Section -->
+        <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-16 px-4">
+          <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-4">Ready to Explore Blockchain?</h2>
+            <p class="text-lg mb-8 text-blue-100">
+              Start with the basics and work your way up to understanding advanced blockchain concepts.
+            </p>
+            <button onclick="showPage('page-hash')"
+              class="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors duration-200">
+              Begin Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Date/Time Display -->
+        <div class="max-w-6xl mx-auto px-4 py-8">
+          <div class="text-center text-gray-600">
+            <div id="datetime" class="text-sm font-mono"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page: Hash -->
+      <div id="page-hash" class="page">
+        <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg m-6">
+          <h2 class="text-3xl font-bold mb-6 text-gray-800">
+            <i class="fas fa-hashtag text-blue-500 mr-2"></i>Hash Generator
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Enter text to see its SHA-256 hash. The same input always produces the same output, but changing even one
+            character completely changes the hash.
+          </p>
+
+          <div class="space-y-4">
+            <div>
+              <label for="hash-input" class="block text-sm font-semibold text-gray-700 mb-2">Text Input:</label>
+              <textarea id="hash-input" rows="4"
+                class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 resize-none"
+                placeholder="Enter any text here..."></textarea>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">SHA-256 Hash:</label>
+              <div id="hash-output"
+                class="w-full px-4 py-3 bg-gray-100 border-2 border-gray-300 rounded-lg font-mono text-sm break-all min-h-[3em] text-gray-700">
+                Hash will appear here...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page: Single Block -->
+      <div id="page-block" class="page">
+        <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg m-6">
+          <h2 class="text-3xl font-bold mb-6 text-gray-800">
+            <i class="fas fa-cube text-yellow-500 mr-2"></i>Single Block Mining
+          </h2>
+          <p class="text-gray-600 mb-6">
+            A block contains data and a nonce (number used once). Miners change the nonce until they find a hash that
+            starts with four zeros (difficulty target).
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-4">
+              <div>
+                <label for="block-number" class="block text-sm font-semibold text-gray-700 mb-2"># (Block
+                  Number):</label>
+                <input id="block-number" type="number" min="0" value="0"
+                  class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" />
+              </div>
+
+              <div>
+                <label for="block-data" class="block text-sm font-semibold text-gray-700 mb-2">Data:</label>
+                <textarea id="block-data" rows="3"
+                  class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 resize-none"
+                  placeholder="Enter block data..."></textarea>
+              </div>
+
+              <div>
+                <label for="block-nonce" class="block text-sm font-semibold text-gray-700 mb-2">Nonce:</label>
+                <input id="block-nonce" type="text" maxlength="9"
+                  class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" />
+              </div>
+
+              <div>
+                <label for="block-timestamp" class="block text-sm font-semibold text-gray-700 mb-2">Timestamp:</label>
+                <input id="block-timestamp" type="text" readonly
+                  class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg bg-gray-100" />
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Hash:</label>
+                <div id="block-hash"
+                  class="w-full px-4 py-3 bg-gray-100 border-2 border-gray-300 rounded-lg font-mono text-xs break-all min-h-[6em] text-gray-700">
+                  Hash will appear here...
+                </div>
+              </div>
+
+              <div>
+                <label for="speed-control" class="block text-sm font-semibold text-gray-700 mb-2">Mining Speed:</label>
+                <select id="speed-control"
+                  class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                  <option value="1">Normal</option>
+                  <option value="10">10x Faster</option>
+                  <option value="50">50x Faster</option>
+                </select>
+              </div>
+
+              <button id="btn-mine"
+                class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                <i class="fas fa-pickaxe mr-2"></i>Mine Block
+              </button>
+
+              <div id="mining-status" class="text-sm text-gray-600 font-mono"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page: Block Chain -->
+      <div id="page-chain" class="page">
+        <div class="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg m-6">
+          <h2 class="text-3xl font-bold mb-6 text-gray-800">
+            <i class="fas fa-link text-green-500 mr-2"></i>Blockchain
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Blocks are linked together using hashes. Each block references the hash of the previous block, creating an
+            immutable chain.
+          </p>
+
+          <div id="blockchain" class="space-y-4 mb-6 overflow-x-auto"></div>
+
+          <div class="flex justify-center">
+            <button id="btn-add-block"
+              class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center">
+              <i class="fas fa-plus mr-2"></i>Add Block
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page ECC Signature -->
+      <div id="page-ecc" class="page">
+        <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg m-6">
+          <h2 class="text-3xl font-bold mb-6 text-gray-800">
+            <i class="fas fa-lock text-purple-500 mr-2"></i>ECC Digital Signature Verification
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Elliptic Curve Cryptography (ECC) is used to sign and verify blockchain transactions. Generate a key pair,
+            sign a message, and verify the signature.
+          </p>
+
+          <button id="btn-generate-key"
+            class="mb-6 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center">
+            <i class="fas fa-key mr-2"></i>Generate Key Pair
+          </button>
+          <p class="text-sm text-gray-600 mb-6">Public and Private Keys can be edited for experimentation. </p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Public Key:</label>
+              <textarea id="ecc-public" rows="4"
+                class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 resize-none font-mono text-xs"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Private Key:</label>
+              <textarea id="ecc-private" rows="4"
+                class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 resize-none font-mono text-xs"></textarea>
+            </div>
+          </div>
+
+          <hr class="my-8" />
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Message to Sign:</label>
+              <textarea id="ecc-message" rows="3"
+                class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 resize-none"
+                placeholder="Enter message to sign..."></textarea>
+            </div>
+
+            <button id="btn-sign"
+              class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center">
+              <i class="fas fa-pen-fancy mr-2"></i>Sign Message
+            </button>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Signature (DER hex):</label>
+              <textarea id="ecc-signature" rows="3" readonly
+                class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg bg-gray-100 resize-none font-mono text-xs"></textarea>
+            </div>
+          </div>
+
+          <hr class="my-8" />
+
+          <button id="btn-verify"
+            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center mb-4">
+            <i class="fas fa-check-circle mr-2"></i>Verify Signature
+          </button>
+          <div id="ecc-verify-result" class="text-lg font-semibold"></div>
+        </div>
+      </div>
+
+      <!-- Page Konsensus -->
+      <div id="page-consensus" class="page">
+        <div class="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg m-6">
+          <h2 class="text-3xl font-bold mb-6 text-gray-800">
+            <i class="fas fa-handshake text-orange-500 mr-2"></i>Consensus Simulation
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Simulate how blockchain networks reach consensus. Three users (A, B, C) have their own blockchains. Mine
+            transactions and verify consensus.
+          </p>
+
+          <!-- Wallets Section -->
+          <div class="mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">User Wallets</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4">
+                <h4 class="text-lg font-bold text-gray-800 mb-3">User A</h4>
+                <div class="mb-3">
+                  <span class="font-semibold">Balance:</span>
+                  <span id="saldo-A" class="text-2xl font-bold text-yellow-600">100</span>
+                </div>
+                <div class="space-y-2">
+                  <div>
+                    <label class="text-xs font-semibold text-gray-700">Receiver:</label>
+                    <select id="receiver-A" class="w-full px-2 py-1 border rounded text-sm">
+                      <option value="B">User B</option>
+                      <option value="C">User C</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="text-xs font-semibold text-gray-700">Amount:</label>
+                    <input id="amount-A" type="number" min="1" value="10"
+                      class="w-full px-2 py-1 border rounded text-sm" />
+                  </div>
+                  <button id="send-A"
+                    class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 rounded transition-colors duration-200">
+                    Send
+                  </button>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
+                <h4 class="text-lg font-bold text-gray-800 mb-3">User B</h4>
+                <div class="mb-3">
+                  <span class="font-semibold">Balance:</span>
+                  <span id="saldo-B" class="text-2xl font-bold text-blue-600">100</span>
+                </div>
+                <div class="space-y-2">
+                  <div>
+                    <label class="text-xs font-semibold text-gray-700">Receiver:</label>
+                    <select id="receiver-B" class="w-full px-2 py-1 border rounded text-sm">
+                      <option value="A">User A</option>
+                      <option value="C">User C</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="text-xs font-semibold text-gray-700">Amount:</label>
+                    <input id="amount-B" type="number" min="1" value="10"
+                      class="w-full px-2 py-1 border rounded text-sm" />
+                  </div>
+                  <button id="send-B"
+                    class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded transition-colors duration-200">
+                    Send
+                  </button>
+                </div>
+              </div>
+
+              <div class="bg-purple-50 border-2 border-purple-300 rounded-lg p-4">
+                <h4 class="text-lg font-bold text-gray-800 mb-3">User C</h4>
+                <div class="mb-3">
+                  <span class="font-semibold">Balance:</span>
+                  <span id="saldo-C" class="text-2xl font-bold text-purple-600">100</span>
+                </div>
+                <div class="space-y-2">
+                  <div>
+                    <label class="text-xs font-semibold text-gray-700">Receiver:</label>
+                    <select id="receiver-C" class="w-full px-2 py-1 border rounded text-sm">
+                      <option value="A">User A</option>
+                      <option value="B">User B</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="text-xs font-semibold text-gray-700">Amount:</label>
+                    <input id="amount-C" type="number" min="1" value="10"
+                      class="w-full px-2 py-1 border rounded text-sm" />
+                  </div>
+                  <button id="send-C"
+                    class="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 rounded transition-colors duration-200">
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mempool -->
+          <div class="mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Mempool (Pending Transactions):</label>
+            <textarea id="mempool" rows="3" placeholder="Each transaction on a new line.  Example: A -> B : 10"
+              class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 resize-none font-mono text-sm"></textarea>
+          </div>
+
+          <!-- Control Buttons -->
+          <div class="flex flex-wrap gap-3 mb-8">
+            <button id="btn-mine-all"
+              class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center">
+              <i class="fas fa-hammer mr-2"></i>Mine Transactions
+            </button>
+            <button id="btn-verify-consensus"
+              class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center">
+              <i class="fas fa-check mr-2"></i>Verify
+            </button>
+            <button id="btn-consensus"
+              class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center">
+              <i class="fas fa-dove mr-2"></i>Consensus
+            </button>
+          </div>
+
+          <!-- Blockchains -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">User Databases</h3>
+
+            <div class="mb-6">
+              <h4 class="text-lg font-semibold text-gray-700 mb-3">Database User A</h4>
+              <div id="chain-A" class="flex gap-3 overflow-x-auto pb-4"></div>
+            </div>
+
+            <div class="mb-6">
+              <h4 class="text-lg font-semibold text-gray-700 mb-3">Database User B</h4>
+              <div id="chain-B" class="flex gap-3 overflow-x-auto pb-4"></div>
+            </div>
+
+            <div class="mb-6">
+              <h4 class="text-lg font-semibold text-gray-700 mb-3">Database User C</h4>
+              <div id="chain-C" class="flex gap-3 overflow-x-auto pb-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page: About -->
+      <div id="page-about" class="page">
+        <div class="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg m-6">
+          <!-- Header -->
+          <h2 class="text-4xl font-bold mb-12 text-gray-800 text-center">
+            <i class="fas fa-user-circle text-blue-500 mr-3"></i>About Me
+          </h2>
+
+          <!-- Profile Section -->
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <!-- Profile Card -->
+            <div class="md:col-span-1 text-center">
+              <div class="mb-6 flex justify-center">
+                <div class="relative w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg">
+                  <img src="https://via.placeholder.com/400/3B82F6/FFFFFF?text=Your+Photo" alt="Profile"
+                    class="w-full h-full object-cover" />
+                </div>
+              </div>
+
+              <h3 class="text-2xl font-bold text-gray-800 mb-2">Herwin</h3>
+              <p class="text-blue-600 font-semibold mb-6">Blockchain Developer & Educator</p>
+
+              <!-- Social Media Links -->
+              <div class="mb-6">
+                <h4 class="text-sm font-bold text-gray-700 mb-3 uppercase tracking-wider">Follow Me</h4>
+                <div class="flex justify-center gap-4">
+                  <a href="https://github.com/22Herwin" target="_blank"
+                    class="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-900 transition-colors duration-200"
+                    title="GitHub">
+                    <i class="fab fa-github text-lg"></i>
+                  </a>
+                  <a href="https://linkedin.com" target="_blank"
+                    class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
+                    title="LinkedIn">
+                    <i class="fab fa-linkedin text-lg"></i>
+                  </a>
+                  <a href="https://twitter.com" target="_blank"
+                    class="w-12 h-12 bg-sky-500 text-white rounded-full flex items-center justify-center hover:bg-sky-600 transition-colors duration-200"
+                    title="Twitter">
+                    <i class="fab fa-twitter text-lg"></i>
+                  </a>
+                  <a href="mailto:your@email.com"
+                    class="w-12 h-12 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-200"
+                    title="Email">
+                    <i class="fas fa-envelope text-lg"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Contact Info -->
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="text-sm font-bold text-gray-700 mb-3 uppercase tracking-wider">Contact</h4>
+                <p class="text-gray-600 mb-2">
+                  <i class="fas fa-envelope text-blue-500 mr-2"></i>
+                  your. email@example.com
+                </p>
+                <p class="text-gray-600">
+                  <i class="fas fa-phone text-blue-500 mr-2"></i>
+                  +62 812 3456 7890
+                </p>
+              </div>
+            </div>
+
+            <!-- Bio Section -->
+            <div class="md:col-span-2">
+              <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">About Me</h3>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                  I'm a passionate blockchain developer and educator focused on making complex blockchain concepts
+                  accessible to everyone.
+                  With expertise in cryptography, distributed systems, and smart contracts, I create interactive
+                  educational tools to help
+                  people understand how blockchain technology works.
+                </p>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                  This Blockchain Simulator is designed to provide hands-on experience with key blockchain concepts
+                  including hashing,
+                  proof-of-work mining, digital signatures, and consensus mechanisms. Each simulation is carefully
+                  crafted to help you
+                  build intuition about how these technologies work together to create a secure, decentralized network.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                  Whether you're a beginner curious about blockchain or a developer looking to deepen your
+                  understanding, I hope these
+                  simulations help you on your journey to mastering blockchain technology.
+                </p>
+              </div>
+
+              <!-- Skills -->
+              <div class="mt-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Skills & Expertise</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <div class="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-semibold text-sm text-center">
+                    Blockchain Development
+                  </div>
+                  <div class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg font-semibold text-sm text-center">
+                    Cryptography
+                  </div>
+                  <div class="bg-green-100 text-green-700 px-4 py-2 rounded-lg font-semibold text-sm text-center">
+                    JavaScript/Web Dev
+                  </div>
+                  <div class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-lg font-semibold text-sm text-center">
+                    Smart Contracts
+                  </div>
+                  <div class="bg-red-100 text-red-700 px-4 py-2 rounded-lg font-semibold text-sm text-center">
+                    Education
+                  </div>
+                  <div class="bg-pink-100 text-pink-700 px-4 py-2 rounded-lg font-semibold text-sm text-center">
+                    Teaching
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Section -->
+          <div class="mt-12 pt-12 border-t-2 border-gray-200">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">
+              <i class="fas fa-map-marker-alt text-red-500 mr-3"></i>Find Me On Map
+            </h3>
+            <div class="bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+              <div class="w-full h-96 rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.821697847364!2d107.60915342346957!3d-6.9271793931815135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3! 1m2!1s0x2e68e6b313d16d01%3A0x2e68e6b313d16d01! 2sBandung%2C%20West%20Java%2C%20Indonesia!5e0!3m2!1sen!2sid!4v1234567890"
+                  width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade" class="w-full h-full"></iframe>
+              </div>
+            </div>
+            <p class="text-gray-600 mt-4 text-center">
+              <i class="fas fa-map-pin text-red-500 mr-2"></i>
+              Currently based in Bandung, West Java, Indonesia
+            </p>
+          </div>
+
+          <!-- Projects Section -->
+          <div class="mt-12 pt-12 border-t-2 border-gray-200">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">
+              <i class="fas fa-folder text-purple-500 mr-3"></i>Projects
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border-l-4 border-blue-500">
+                <h4 class="text-lg font-bold text-gray-800 mb-2">
+                  <i class="fas fa-cube text-blue-500 mr-2"></i>Blockchain Simulator
+                </h4>
+                <p class="text-gray-700 text-sm mb-3">
+                  Interactive educational tool to learn blockchain concepts through hands-on simulations.
+                </p>
+                <a href="https://github.com/22Herwin" target="_blank"
+                  class="text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                  View on GitHub <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+
+              <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border-l-4 border-purple-500">
+                <h4 class="text-lg font-bold text-gray-800 mb-2">
+                  <i class="fas fa-lock text-purple-500 mr-2"></i>Crypto Learning Platform
+                </h4>
+                <p class="text-gray-700 text-sm mb-3">
+                  Comprehensive platform for learning cryptography concepts and implementations.
+                </p>
+                <a href="https://github. com/22Herwin" target="_blank"
+                  class="text-purple-600 hover:text-purple-800 font-semibold text-sm">
+                  View on GitHub <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/elliptic/6.5.4/elliptic.min.js"></script>
+    <script src="app4.js"></script>
+    <script>
+      // Dropdown functionality
+      const dropdownBtn = document.getElementById('dropdown-btn');
+      const dropdownMenu = document.getElementById('dropdown-menu');
+
+      dropdownBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        dropdownMenu.classList.toggle('show');
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+          dropdownMenu.classList.remove('show');
+        }
+      });
+
+      // Close dropdown when a link is clicked
+      dropdownMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          dropdownMenu.classList.remove('show');
+        });
+      });
+
+      // Update navigation button active states
+      const originalShowPage = window.showPage;
+      window.showPage = function (pageId) {
+        originalShowPage(pageId);
+
+        // Update active button in navbar
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+          btn.classList.remove('active', 'bg-gray-700');
+        });
+
+        const pageType = pageId.split('-')[1];
+        const tabBtn = document.getElementById(`tab-${pageType}`);
+        if (tabBtn) {
+          tabBtn.classList.add('active', 'bg-gray-700');
+        }
+      };
+    </script>
+  </body>
+
+</html>
