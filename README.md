@@ -100,7 +100,7 @@ This project is intended for learning and demonstration. It shows how common pri
 
 ## License
 
-Choose a license for your project (e.g., MIT). Add a LICENSE file with the chosen terms.
+MIT License Copyright (c) 2025 Herwin Dermawan
 
 ## Contact
 
