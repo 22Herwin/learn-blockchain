@@ -7,6 +7,7 @@
     <title>Blockchain Simulator - Learn Blockchain Technology</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </head>
 
@@ -761,6 +762,85 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Message Button -->
+    <button id="floating-message-btn" onclick="toggleMessageModal()"
+      class="fixed bottom-8 right-8 w-16 h-16 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-40 cursor-pointer"
+      title="Send me a message">
+      <i class="fas fa-comment text-2xl"></i>
+    </button>
+
+    <!-- Message Modal -->
+    <div id="message-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
+      <div class="bg-white rounded-lg shadow-2xl w-full max-w-md animate-fade-in">
+        <!-- Modal Header -->
+        <div
+          class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 flex justify-between items-center rounded-t-lg">
+          <h2 class="text-xl font-bold">
+            <i class="fas fa-envelope mr-2"></i>Send Me a Message
+          </h2>
+          <button onclick="toggleMessageModal()" class="text-white hover:text-gray-200 text-2xl cursor-pointer">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <!-- Modal Body -->
+        <form id="message-form" class="p-6 space-y-4">
+          <!-- Name Field -->
+          <div>
+            <label for="msg-name" class="block text-sm font-semibold text-gray-700 mb-2">
+              <i class="fas fa-user text-blue-500 mr-2"></i>Full Name
+            </label>
+            <input type="text" id="msg-name" placeholder="Enter your name" required
+              class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors" />
+          </div>
+
+          <!-- Email Field -->
+          <div>
+            <label for="msg-email" class="block text-sm font-semibold text-gray-700 mb-2">
+              <i class="fas fa-envelope text-blue-500 mr-2"></i>Email Address
+            </label>
+            <input type="email" id="msg-email" placeholder="Enter your email" required
+              class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors" />
+          </div>
+
+          <!-- Phone Field -->
+          <div>
+            <label for="msg-phone" class="block text-sm font-semibold text-gray-700 mb-2">
+              <i class="fas fa-phone text-blue-500 mr-2"></i>Phone Number
+            </label>
+            <input type="tel" id="msg-phone" placeholder="Enter your phone number" required
+              class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors" />
+          </div>
+
+          <!-- Message Field -->
+          <div>
+            <label for="msg-text" class="block text-sm font-semibold text-gray-700 mb-2">
+              <i class="fas fa-message text-blue-500 mr-2"></i>Message
+            </label>
+            <textarea id="msg-text" placeholder="Enter your message..." rows="4" required
+              class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 resize-none transition-colors"></textarea>
+          </div>
+
+          <!-- Status Message -->
+          <div id="message-status" class="text-sm text-center"></div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="submit-message-btn"
+            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fas fa-paper-plane"></i>Send Message
+          </button>
+        </form>
+
+        <!-- Modal Footer -->
+        <div class="bg-gray-50 px-6 py-4 rounded-b-lg border-t border-gray-200">
+          <p class="text-xs text-gray-600 text-center">
+            Your message will be sent securely. We respect your privacy.
+          </p>
         </div>
       </div>
     </div>

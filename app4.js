@@ -518,3 +518,201 @@ function navigatePrevious() {
 // Make navigation functions globally available
 window.navigateNext = navigateNext;
 window.navigatePrevious = navigatePrevious;
+
+// ================== FLOATING MESSAGE ==================
+
+// Toggle message modal
+function toggleMessageModal() {
+	const modal = document.getElementById('message-modal');
+	modal.classList.toggle('hidden');
+}
+
+// Close modal when clicking outside
+document.addEventListener('DOMContentLoaded', () => {
+	const modal = document.getElementById('message-modal');
+
+	modal.addEventListener('click', (e) => {
+		if (e.target === modal) {
+			toggleMessageModal();
+		}
+	});
+
+	// Handle form submission
+	const messageForm = document.getElementById('message-form');
+	messageForm.addEventListener('submit', handleMessageSubmit);
+});
+
+// Handle message form submission
+async function handleMessageSubmit(e) {
+	e.preventDefault();
+
+	const name = document.getElementById('msg-name').value;
+	const email = document.getElementById('msg-email').value;
+	const phone = document.getElementById('msg-phone').value;
+	const message = document.getElementById('msg-text').value;
+	const statusDiv = document.getElementById('message-status');
+	const submitBtn = document.getElementById('submit-message-btn');
+
+	// Show loading state
+	submitBtn.disabled = true;
+	submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>Sending...';
+	statusDiv.textContent = '';
+
+	try {
+		// Try to send to Supabase first
+		const success = await sendToSupabase(name, email, phone, message);
+
+		if (success) {
+			statusDiv.innerHTML =
+				'<span class="text-green-600 font-semibold"><i class="fas fa-check-circle mr-1"></i>Message sent successfully!</span>';
+			document.getElementById('message-form').reset();
+
+			// Close modal after 2 seconds
+			setTimeout(() => {
+				toggleMessageModal();
+				statusDiv.textContent = '';
+			}, 2000);
+		} else {
+			throw new Error('Supabase send failed');
+		}
+	} catch (error) {
+		console.error('Supabase error:', error);
+
+		// Fallback to email service (EmailJS or your backend)
+		try {
+			await sendViaEmail(name, email, phone, message);
+			statusDiv.innerHTML =
+				'<span class="text-green-600 font-semibold"><i class="fas fa-check-circle mr-1"></i>Message sent successfully!</span>';
+			document.getElementById('message-form').reset();
+
+			setTimeout(() => {
+				toggleMessageModal();
+				statusDiv.textContent = '';
+			}, 2000);
+		} catch (emailError) {
+			console.error('Email error:', emailError);
+			statusDiv.innerHTML =
+				'<span class="text-red-600 font-semibold"><i class="fas fa-exclamation-circle mr-1"></i>Error sending message. Please try again.</span>';
+		}
+	} finally {
+		submitBtn.disabled = false;
+		submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i>Send Message';
+	}
+}
+
+// ================== SUPABASE INTEGRATION ==================
+
+// Send message to Supabase
+async function sendToSupabase(name, email, phone, message) {
+	try {
+		// Replace with your Supabase credentials
+		const SUPABASE_URL = 'https://aqpalgqrcmskfxbbqcsg.supabase.co';
+		const SUPABASE_KEY =
+			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxcGFsZ3FyY21za2Z4YmJxY3NnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ0ODQzNDcsImV4cCI6MjA4MDA2MDM0N30.-K0i4Ipv65Bm_6rLQH_ZGr_N9iBtTeiAEENpuX3AKDY';
+		const TABLE_NAME = 'messages'; // Your table name
+
+		const response = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE_NAME}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				apikey: SUPABASE_KEY,
+				Authorization: `Bearer ${SUPABASE_KEY}`,
+			},
+			body: JSON.stringify({
+				name,
+				email,
+				phone,
+				message,
+				created_at: new Date().toISOString(),
+			}),
+		});
+
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+
+		return true;
+	} catch (error) {
+		console.error('Supabase error:', error);
+		return false;
+	}
+}
+
+// ================== EMAIL SERVICE (EmailJS) ==================
+async function ensureEmailJS() {
+	if (window.emailjs && typeof emailjs.init === 'function') {
+		return window.emailjs;
+	}
+
+	const SRC =
+		'https://cdn.jsdelivr.net/npm/@emailjs/browser@3.10.0/dist/index.min.js';
+
+	// if script already added but not ready, wait for it
+	const existing = Array.from(document.scripts).find((s) => s.src === SRC);
+	if (existing) {
+		return new Promise((resolve, reject) => {
+			const timeout = setTimeout(
+				() => reject(new Error('EmailJS load timeout')),
+				8000
+			);
+			const check = () => {
+				if (window.emailjs && typeof emailjs.init === 'function') {
+					clearTimeout(timeout);
+					try {
+						emailjs.init('AQL4lrULi3H6UBVuu');
+					} catch {}
+					resolve(window.emailjs);
+				} else {
+					setTimeout(check, 150);
+				}
+			};
+			check();
+		});
+	}
+
+	// else create and append script
+	return new Promise((resolve, reject) => {
+		const s = document.createElement('script');
+		s.src = SRC;
+		s.async = true;
+		s.onload = () => {
+			if (window.emailjs && typeof emailjs.init === 'function') {
+				try {
+					emailjs.init('AQL4lrULi3H6UBVuu');
+				} catch {}
+				resolve(window.emailjs);
+			} else {
+				reject(new Error('EmailJS loaded but global not available'));
+			}
+		};
+		s.onerror = () => reject(new Error('Failed to load EmailJS script'));
+		document.head.appendChild(s);
+	});
+}
+
+// Send message via Email (uses ensureEmailJS)
+async function sendViaEmail(name, email, phone, message) {
+	try {
+		await ensureEmailJS();
+		const resp = await emailjs.send('service_cxh3udh', 'template_b1q8ua6', {
+			to_email: 'herwindermawan9@gmail.com',
+			from_name: name,
+			from_email: email,
+			phone,
+			message,
+		});
+		return resp && resp.status === 200;
+	} catch (err) {
+		console.warn('EmailJS unavailable or failed:', err);
+		// fallback: mailto
+		const subject = encodeURIComponent('Message from site: ' + name);
+		const body = encodeURIComponent(
+			`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}`
+		);
+		window.location.href = `mailto:herwindermawan9@gmail.com?subject=${subject}&body=${body}`;
+		return false;
+	}
+}
+
+// Make functions globally available
+window.toggleMessageModal = toggleMessageModal;
