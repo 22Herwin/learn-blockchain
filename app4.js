@@ -716,3 +716,28 @@ async function sendViaEmail(name, email, phone, message) {
 
 // Make functions globally available
 window.toggleMessageModal = toggleMessageModal;
+
+(function () {
+	function activateHome() {
+		const home = document.getElementById('tab-home');
+		if (!home) return;
+
+		// If showPage is defined (app4.js behavior), reuse it by clicking the button
+		if (typeof showPage === 'function') {
+			home.click();
+			return;
+		}
+
+		// Fallback: add a visual highlight class (adjust classes to match your CSS)
+		home.classList.add('bg-gray-700');
+	}
+
+	if (
+		document.readyState === 'complete' ||
+		document.readyState === 'interactive'
+	) {
+		setTimeout(activateHome, 0);
+	} else {
+		document.addEventListener('DOMContentLoaded', activateHome);
+	}
+})();
